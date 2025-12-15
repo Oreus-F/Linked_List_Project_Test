@@ -51,8 +51,27 @@ class LinkedList{
         if(this.head !== null){
             return this.head.value
         } else {
-            return new Error('Head has no data')
+            return new Error('This list has no data')
         }
+    }
+
+
+    tail(){
+        let node = this.head;
+        let result;
+
+        if(node === null){
+            return new Error('This list has no data')
+        }
+
+        while(node){
+            if(node.nextNode === null){
+                result = node.value
+            }
+            node = node.nextNode
+        }
+
+        return result
     }
 
 
@@ -103,5 +122,5 @@ list.prepend('monkey');
 
 console.log(list.size())
 
-
 console.log(list.printTest());
+console.log(list.tail())
