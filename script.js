@@ -49,7 +49,7 @@ class LinkedList{
 
     headNode(){
         if(this.head !== null){
-            return this.head.value
+            return this.head
         } else {
             return new Error('This list has no data')
         }
@@ -66,12 +66,17 @@ class LinkedList{
 
         while(node){
             if(node.nextNode === null){
-                result = node.value
+                result = node
             }
             node = node.nextNode
         }
 
         return result
+    }
+
+
+    at(index){
+
     }
 
 
