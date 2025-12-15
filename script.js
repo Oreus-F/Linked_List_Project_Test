@@ -22,6 +22,7 @@ class LinkedList{
 
     }
 
+
     prepend(value){
         if(this.head === null){
             this.head = new Node(value)
@@ -95,13 +96,75 @@ class LinkedList{
         }
 
         if(node === null){
-            return new Error("There's no data at this index")
+            return null
+        }
+
+    }
+    
+
+    pop(){
+        if(this.head === null){
+            return new Error ('This list has no data')
+        }
+
+        let node = this.head;
+        let tail = this.tail()
+
+        while(node){
+            if(node.nextNode === tail){
+                node.nextNode = null
+            }
+            node = node.nextNode
         }
 
     }
 
 
-    printTest(){
+    contains(value){
+        if(this.head === null){
+            return new Error ('This list has no data')
+        }
+
+        let node = this.head;
+
+        while(node){
+            if(node.value === value){
+                return true
+            }
+
+            node = node.nextNode
+        }  
+        
+        return false
+        
+    }
+
+
+    find(value){
+        if(this.head === null){
+            return new Error ('This list has no data')
+        }
+
+        let node = this.head;
+        let index = 0;
+
+        while(node){
+            
+            if(node.value === value){
+                return index
+            } else {
+                node = node.nextNode;
+                index++;
+            }
+        }
+
+        if(node === null){
+            return null
+        }
+    }
+
+
+    toString(){
 
         if(!this.head){
             return;
@@ -111,11 +174,45 @@ class LinkedList{
         let str = "";
 
         while(node){
-            str += node.value + ' ';
+            str += `( ${node.value} ) -> `  + ' ';
             node = node.nextNode;
         }
 
+        str += `null`
         return str
+    }
+
+
+    insertAt(value, index){
+        
+        if(index === 0){
+            this.prepend(value);
+            return
+        }
+
+        const oldSequence = this.at(index);
+        const previousNode = this.at(index - 1);
+        const newNode = new Node(value);
+        
+        newNode.nextNode = oldSequence;
+        previousNode.nextNode = newNode;
+    }
+
+
+    removeAt(index){
+
+
+        const nodeToDelete = this.at(index);
+        const followingNodes = nodeToDelete.nextNode;
+
+        if(index === 0){
+            this.head = followingNodes;
+            return    
+        }
+
+        const previousNode = this.at(index - 1);
+
+        previousNode.nextNode = followingNodes
     }
 }
 
@@ -125,33 +222,3 @@ class Node{
         this.nextNode = next
     }
 }
-
-
-const list = new LinkedList;
-
-console.log(list.size())
-
-list.append("dog");
-list.append("cat");
-list.append("bird");
-list.append("train");
-
-
-
-console.log(list.printTest());
-
-console.log(list.size())
-
-console.log(list.headNode())
-
-list.prepend('monkey');
-
-console.log(list.size())
-
-console.log(list.printTest());
-console.log(list.tail())
-
-console.log(list.at(0))
-console.log(list.at(2))
-console.log(list.at(4))
-console.log(list.at(6))
