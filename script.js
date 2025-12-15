@@ -22,6 +22,17 @@ class LinkedList{
 
     }
 
+    prepend(value){
+        if(this.head === null){
+            this.head = new Node(value)
+        } else {
+            const temp = this.head
+            const newValue = new Node(value);
+            newValue.nextNode = temp
+            this.head = newValue
+        }
+    }
+
 
     printTest(){
 
@@ -55,6 +66,9 @@ list.append("cat");
 list.append("bird");
 list.append("train");
 
-console.log(list.printTest())
 
-list
+console.log(list.printTest());
+
+list.prepend('monkey');
+
+console.log(list.printTest());
