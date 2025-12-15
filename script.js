@@ -76,8 +76,28 @@ class LinkedList{
 
 
     at(index){
-        // return the node at the specific index
-        // throw error if no data or if no node at the specific index
+
+        if(this.head === null){
+            return new Error ('This list has no data')
+        }
+
+        let node = this.head;
+        let pointer = 0;
+
+        while(node){
+            
+            if(pointer === index){
+                return node
+            } else {
+                node = node.nextNode;
+                pointer++;
+            }
+        }
+
+        if(node === null){
+            return new Error("There's no data at this index")
+        }
+
     }
 
 
@@ -130,3 +150,8 @@ console.log(list.size())
 
 console.log(list.printTest());
 console.log(list.tail())
+
+console.log(list.at(0))
+console.log(list.at(2))
+console.log(list.at(4))
+console.log(list.at(6))
