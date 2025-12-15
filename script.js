@@ -33,6 +33,18 @@ class LinkedList{
         }
     }
 
+    size(){
+        let size = 0;
+
+        let node = this.head;
+
+        while(node){
+            size++;
+            node = node.nextNode
+        }
+
+        return size
+    }
 
     printTest(){
 
@@ -61,14 +73,22 @@ class Node{
 
 
 const list = new LinkedList;
+
+console.log(list.size())
 list.append("dog");
 list.append("cat");
 list.append("bird");
 list.append("train");
 
 
+
 console.log(list.printTest());
 
+console.log(list.size())
+
 list.prepend('monkey');
+
+console.log(list.size())
+
 
 console.log(list.printTest());
