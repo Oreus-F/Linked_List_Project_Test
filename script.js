@@ -46,6 +46,16 @@ class LinkedList{
         return size
     }
 
+
+    headNode(){
+        if(this.head !== null){
+            return this.head.value
+        } else {
+            return new Error('Head has no data')
+        }
+    }
+
+
     printTest(){
 
         if(!this.head){
@@ -75,6 +85,7 @@ class Node{
 const list = new LinkedList;
 
 console.log(list.size())
+
 list.append("dog");
 list.append("cat");
 list.append("bird");
@@ -85,6 +96,8 @@ list.append("train");
 console.log(list.printTest());
 
 console.log(list.size())
+
+console.log(list.headNode())
 
 list.prepend('monkey');
 
